@@ -58,7 +58,7 @@ echo ""
 # Read the file
 words=(`cat $fileW`)
 # Get total cdnumber of lines
-NUMBER_OF_LINES=$(wc -l $fileW | cut -f1 -d' ')
+NUMBER_OF_LINES=$(wc -l $fileW | xargs | cut -f1 -d' ')
 
 # Check if we have a place to store/read scores
 checkScoresFile $fileW
@@ -118,7 +118,7 @@ while true;do
                 wrongWord=0
             else
                 # Print the missed character in yellow if capitalization is wrong
-                if [ "${char^^}" == "$wordChar" ] || [ "${char,,}" == "$wordChar" ]; then
+                if [ "$(echo "$char" | tr '[:lower:]' '[:upper:]')" == "$wordChar" ] || [ "$(echo "$char" | tr '[:upper:]' '[:lower:]')" == "$wordChar" ]; then
                     printf "${yellow}${wordChar}${reset}"
                 else
                     printf "${red}${wordChar}${reset}"
