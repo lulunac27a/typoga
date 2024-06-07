@@ -98,10 +98,8 @@ while true;do
         incompletePhrase=1 # User started typing phrase, mark as incomplete
         wordChar="${word:$i:1}"
 
-        # Increase score by +10%
-        if [ $(($hitChar%$MinChar2Score)) -eq 0 ] && [ ! $hitChar -eq 0 ]; then
-            ((scFactor++))
-        fi
+        # Increase score by +1/80% every correct hit made
+        ((scFactor+=1/80.0))
 
         if [ "$char" == "$wordChar" ]; then
             printf "${green}${wordChar}${reset}"
