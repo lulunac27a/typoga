@@ -99,7 +99,7 @@ while true;do
         wordChar="${word:$i:1}"
 
         # Increase score by +1/80% every correct hit made
-        ((scFactor+=1/80.0))
+        scFactor=$(echo "scale=4; $scFactor + 1 / 80" | bc)
 
         if [ "$char" == "$wordChar" ]; then
             printf "${green}${wordChar}${reset}"
@@ -142,7 +142,7 @@ totalChar=$((hitChar+missedChar))
 
 #################__SCORE__################
 # Only show score wit we reach at least once MinChar2Score and started playing it
-if [ $scFactor -gt 0 ] && [ $hitChar -gt 0 ]; then
+if echo "$scFactor > 0 && $hitChar > 0" | bc -l | grep -q 1; then
     # Calculate Accuracy
     acc=$(echo "scale=2; acc = (${hitChar}*100)/${totalChar}; acc" | bc)
     echo "Accuracy: (${hitChar}/${totalChar}) = $acc %"
