@@ -9,8 +9,8 @@ reset=`tput sgr0`
 
 MinChar2Score=80 # Minimum number of chars to hit
 
-# Every time user reaches multiple of MinChar2Score 
-# the Score is increased +1%:  1 -> 1%, 2 -> 2%
+# Every time character hit correctly
+# the Score is increased +0.0125%:  1 -> 0.0125%, 2 -> 0.025%
 scFactor=0
 
 hitChar=0 # Saves the total of hit characters
