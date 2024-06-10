@@ -142,7 +142,7 @@ totalChar=$((hitChar+missedChar))
 
 #################__SCORE__################
 # Only show score wit we reach at least once MinChar2Score and started playing it
-if echo "$scFactor > 0 && $hitChar > 0" | bc -l | grep -q 1; then
+if echo "$scFactor >= 1 && $hitChar > 0" | bc -l | grep -q 1; then
     # Calculate Accuracy
     acc=$(echo "scale=2; acc = (${hitChar}*100)/${totalChar}; acc" | bc)
     echo "Accuracy: (${hitChar}/${totalChar}) = $acc %"
